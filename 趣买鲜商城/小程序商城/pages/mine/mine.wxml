@@ -1,0 +1,32 @@
+<!--pages/mine/mine.wxml-->
+<view class='whiteBg'>
+  <!-- 会员卡 -->
+  <view>
+    <view class='vip_card' style='background-image:url(../../images/true.jpg);'>
+      <text class='flex_bet'>会员权益 ></text>
+      <view class='col_center vip_info'>
+        <view class='list_icon'>
+          <image src='../../images/crown.svg'></image>
+        </view>
+        <text>{{userInfo.nickName}}</text>
+        <text>开通商城会员  尊享品质生活</text>
+        <view class='start_vip' bindtap='bindVip'>立即开通</view>
+      </view>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view>
+    <navigator class='flex_bet my_list' wx:for='{{list_data}}' wx:for-item='i' url='{{i.list_url}}' data-url='{{i.list_url}}' bindtap='bindList'>
+      <view class='col_center list_l'>
+        <view class='list_icon'>
+          <image src='{{i.list_icon}}'></image>
+        </view>
+        <text>{{i.list_title}}</text>
+      </view>
+      <view class='col_center list_r'>
+        <text>{{i.arr_text}}</text>
+        <view class='icon'><image src='../../images/right_arr.svg'></image></view>
+      </view>
+    </navigator>
+  </view>
+</view>

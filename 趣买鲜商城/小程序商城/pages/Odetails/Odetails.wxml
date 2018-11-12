@@ -1,0 +1,75 @@
+<!--pages/Odetails/Odetails.wxml-->
+<!-- 订单详情 -->
+<view class='O_box'>
+  <view class='O_title flex_bet'>
+  	<view>
+	    <text wx:if='{{order_info.status==1}}'>订单未付款</text>
+	    <text wx:elif='{{order_info.status==2}}'>订单待发货</text>
+	    <text wx:elif='{{order_info.status==3}}'>订单待收货</text>
+	    <text wx:elif='{{order_info.status==4}}'>订单待取货</text>
+	    <text wx:else='{{order_info.status==5}}'>订单已完成</text>
+    </view>
+    <text>{{order_info.order_type==1?'门店自提':'配送到家'}}</text>
+  </view>
+  <!-- 店铺信息 -->
+  <view class='D_box personal' hidden='{{order_info.order_type!=1}}'> 
+    <view class='personal_D'>
+      <view style='display:flex;'>
+	      <view class='icon'>
+	        <image src='../../images/map.png'></image>
+	      </view>
+      	    银基王朝三期
+      </view>
+    </view>
+    <text class='over_two'>门店地址：郑州市金水区福元路157号银基王朝3期万和园</text>
+  </view>
+  <!-- 个人信息 -->
+  <view class='D_box personal' hidden='{{order_info.order_address==null || order_info.order_type==1}}'> 
+    <view class='personal_D'>
+      <text>联系人：{{order_info.order_rename}}</text>
+      <text>{{order_info.order_tel}}</text>
+    </view>
+    <text>收货地址：{{order_info.order_address}}</text>
+  </view>
+  <!-- 订单信息 -->
+  <view class='D_box Order'>
+    <view class='personal_D Order_D'>
+      <text>订单编号：{{order_info.order_id}}</text>
+      <text class='copay' bindtap='bindcopy' data-text='{{order_info.order_id}}'>复制</text>
+    </view>
+    <text>下单时间：{{order_info.create_time}}</text>
+    <text>完成时间：{{order_info.update_time}}</text>
+  </view>
+  <!-- 购买商品信息 -->
+  <view class='D_box commodity'>
+    <view class='personal_D commodity_D'>
+      <text>商品总额</text>
+      <text>￥{{order_info.prince_total}}</text>
+    </view>
+    <view class='personal_D commodity_D'>
+      <text>商品数量</text>
+      <text>×{{order_info.num_total}}</text>
+    </view>
+    <view class='personal_D commodity_D'>
+      <text>运费</text>
+      <text>￥0</text>
+    </view>
+    <view class='personal_D commodity_D Total'>
+      <text>合计：￥{{order_info.prince_total}}</text>
+    </view>
+  </view>
+  <!-- 商品图文 -->
+  <view class='image_text' wx:for='{{goodsList}}' wx:for-item='i'>
+    <image src='{{i.goods_thumbimgurl}}'></image>
+    <view class='Text'>
+      <text class='order_name'>{{i.goods_name}}</text>
+      <view class='personal_D commodity_D classification'>
+        <text>单价：￥{{i.prince}}</text>
+        <text>×{{i.num}}</text>
+      </view>
+      <view class='personal_D commodity_D money'>
+        <text>￥{{i.num*i.prince}}</text>
+      </view>
+    </view>
+  </view>
+</view>

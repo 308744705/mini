@@ -1,0 +1,76 @@
+/* pages/Odetails/Odetails.wxss */
+.O_box>view{
+  background: #fff;
+}
+.O_box text{
+  font-size: 30rpx;
+  color: #666;
+  display: block;
+}
+.O_title{
+  width: 100%;
+  height: 100rpx;
+  background: #DEBA7C !important;
+}
+.O_title>text{
+	padding-right:30rpx;
+}
+.O_title text{
+  font-size: 34rpx;
+  color: #fff;
+  line-height: 100rpx;
+  padding-left: 50rpx;
+}
+.D_box{
+  padding: 20rpx 30rpx;
+  border-bottom: 15rpx solid #eee;
+}
+.personal_D{
+  display: flex;
+  justify-content: space-between;
+}
+.copay{
+  border: 1px solid #ddd;
+  padding: 0 15rpx;
+  border-radius: 3px;
+}
+.Total{
+  justify-content: flex-end;
+  border-top: 1px solid #ddd;
+  padding-top: 20rpx;
+  margin-top: 20rpx;
+}
+.Total text{
+  font-size: 34rpx;
+  color: #333;
+  font-weight: 700;
+}
+.image_text{
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+.image_text image{
+  width: 180rpx;
+  height: 180rpx;
+  display: block;
+  margin-right:25rpx; 
+}
+.Text{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.order_name{
+  font-size: 34rpx;
+  color: #333;
+  line-height: 40rpx;
+}
+.image_text .money{
+  justify-content: flex-end;
+}
+.classification text{
+  font-size: 28rpx;
+  color: #999;
+}

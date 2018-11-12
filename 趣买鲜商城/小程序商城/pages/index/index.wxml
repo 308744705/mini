@@ -1,0 +1,80 @@
+<!--pages/index/index.wxml-->
+<view>
+  <!-- 授权弹窗 -->
+  <view class='dialog-container' hidden="{{hasUserInfo}}">
+    <view class='dialog-mask'></view>
+    <view class='dialog-info'>
+        <view class='dialog-title'>登陆提示</view>
+        <view class='dialog-content'>为了您能有更好的体验，请点击授权</view>
+        <view class='dialog-footer'>
+          <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo' catchtap='confirmEvent'>确认授权</button>
+        </view>
+    </view>
+  </view>
+  <view class='head_box flex_bet'>
+    <!-- 定位 -->
+    <navigator url='../address/address' class='location flex_bet' hidden='true'>
+      <view class='icon' style='margin-top:-2rpx;'>
+        <image src='../../images/map.png'></image>
+      </view>
+      <view class='flex_bet'>
+        <text>银基王朝三期</text><image class='arrow' src='../../images/arr_down.png'></image>
+      </view>
+    </navigator>
+    <!-- 搜索 -->
+    <navigator url='../search/search'>
+      <view class='icon'>
+        <image src='../../images/search.png'></image>
+      </view>
+    </navigator>
+  </view>
+  <!-- tab切换 -->
+  <view class='clear_bar'>
+    <view class='nav'>
+      <view class='swiper_tab'>
+        <block wx:for='{{cate_list}}' wx:for-index='nav_idx' wx:key='nav_idx'>
+          <view class='item {{swiper_current==nav_idx?"nav_active":""}}' bindtap='navClick' data-idx='{{nav_idx}}'>{{item.cate_name}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!-- 商品 内容区 -->
+  <swiper class='goods_list' duration="{{duration}}'" style='height:{{height}};' current='{{nav_idx}}' bindchange='swiperChange'>
+    <block wx:for="{{goods_list}}" wx:for-item="items" wx:for-index="idx" wx:key='idx'>
+      <swiper-item>
+        <view class='goods_box'>
+          <!-- 广告banner  400*600最合适 -->
+          <view class='good_ad'>
+            <image mode='widthFix' src='{{items.cate_thumbimgurl}}'></image>
+          </view>
+          <!-- 商品列表 -->
+          <view wx:for='{{items.data}}' wx:for-item="i" bindtap='goodClick' data-id='{{i.id}}'>
+            <view class='good_cover' style='background-image:url({{i.goods_thumbimgurl}});'>
+              <view class='scroll'>
+                <view class='scroll_arr'></view>
+                <text>{{i.goods_batter_name}}</text>
+              </view>
+            </view>
+            <view class='good_easy'>
+              <view class='good_info'>
+                <text class='title over_two'>{{i.goods_name}}</text>
+                <!-- <view>预计配送时间：2018-10-24 18:00:00</view> -->
+              </view>
+              <view class='good_data'>
+                <view class='price_box'>
+                  <view class='discount red'>团购价：¥<text>{{i.price}}</text></view>
+                  <view class='old_price'>零售价：¥<text>{{i.true_price}}</text></view>
+                </view>
+                <view>
+                  <text>已售<text>{{i.sale_stock}}</text>份/剩余<text>{{i.stock}}</text>份</text>
+                </view>
+                <text class='good_btn' wx:if='{{i.sale_state}}'>加入购物车</text>
+                <text class='good_btn empty' wx:else>已售罄</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

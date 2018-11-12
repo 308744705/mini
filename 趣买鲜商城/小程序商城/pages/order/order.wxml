@@ -1,0 +1,61 @@
+<!--pages/order/order.wxml-->
+<view>
+  <!-- 订单分类tab -->
+  <view class='order_nav flex_bet'>
+    <text wx:for='{{order_state}}' wx:for-index='idx' class='{{nav_active==idx?"active":""}}' bindtap='orderNavClick' data-idx='{{idx}}'>{{item}}</text>
+  </view>
+  <!-- 订单列表 -->
+  <view>
+    <swiper current='{{nav_active}}' indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:{{height}};' bindchange='swiperChange'>
+      <block wx:for='{{order_state}}'>
+        <swiper-item>
+          <view class='orders_box' wx:if='{{order_length!=0}}'>
+            <view class='order_box' wx:for='{{order_list}}' wx:for-item='i' wx:for-index='idx' hidden='{{nav_active!=i.status&&nav_active!=0}}'>
+              <view class='order_info flex_bet'>
+                <text>订单号：{{i.order_id}}</text>
+                <text class='red' wx:if='{{i.status==1}}'>等待付款</text>
+                <text wx:elif='{{i.status==2}}'>待发货</text>
+                <text wx:elif='{{i.status==3}}'>待收货 </text>
+                <text wx:elif='{{i.status==4}}'>待取货</text>
+                <text wx:else='{{i.status==5}}'>已收货</text>
+              </view>
+              <!-- ===========点击跳转订单详情页=========== -->
+              <view class='order_good' bindtap='Odetails' data-id='{{i.order_id}}'>
+                <view class='good_cover' style='background-image:url({{i.demo_goods.goods_thumbimgurl}});'></view>
+                <view class='good_info'>
+                  <view class='flex_bet'>
+                  	<text class='title over_two'>{{i.demo_goods.goods_name}}</text>
+                  	<view class='icon' wx:if='{{i.order_type==1}}'><image src='../../images/shop1.svg'></image></view>
+                  	<view class='icon' wx:else><image src='../../images/send.svg'></image></view>
+                  </view>
+                  <view class='flex_bet'><text>x{{i.demo_goods.num}}</text><view class='flex_bet'>共{{i.num_total}}件<view class='arr_right'><image src='../../images/right_arr.svg'></image></view></view></view>
+                </view>
+              </view>
+              <view class='order_price flex_bet'>
+                <view>总计：<text>￥{{i.prince_total}}</text></view>
+                <view class='flex_bet' wx:if='{{i.status==1}}' style='width:340rpx;'>
+	                <view class='order_btn del_order' bindtap='delOrder' data-id='{{i.order_id}}' data-type='cancel'>取消订单</view>
+	                <view class='order_btn goPay' bindtap='toPay' data-idx='{{idx}}'>去支付</view>
+                </view>
+                <view class='order_btn' wx:elif='{{i.status==2}}' bindtap='toRemind'>提醒发货</view>
+                <view class='order_btn' wx:elif='{{i.status==3}}' bindtap='checkGet' data-id='{{i.order_id}}'>确认收货</view>
+                <view class='order_btn' wx:elif='{{i.status==4}}' bindtap='checkGet' data-id='{{i.order_id}}'>确认取货</view>
+                <!-- <view class='order_btn' wx:elif='{{i.status==5}}' bindtap='toEval'>去评价</view> -->
+                <view class='order_btn del_order' bindtap='delOrder' wx:else='{{i.status==5}}' data-id='{{i.order_id}}' data-type='del'>删除订单</view>
+              </view>
+            </view>
+          </view>
+          <!-- 订单为空 -->
+          <view class='empty_cart' wx:else>
+            <view class='empty_icon'><image src='../../images/empty_order.svg'></image></view>
+            <text>{{item.text}}</text>
+            <navigator url='../index/index' class='goShop'>
+              去逛逛
+            </navigator>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>

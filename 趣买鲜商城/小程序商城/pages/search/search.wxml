@@ -1,0 +1,16 @@
+<!--pages/address/address.wxml-->
+<view>
+  <form class='form' bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section" animation="{{intAnimate}}">
+      <view class="icon"><image src='../../images/search.png'></image></view>
+      <input name="input" bindfocus='inputFocus' bindblur='cancel' placeholder="搜索" />
+    </view>
+    <text class='red cancel' animation="{{btnAnimate}}" bindtap='cancel'>取消</text>
+  </form>
+  <view>
+    <view>
+      
+    </view>
+  </view>
+</view>
+

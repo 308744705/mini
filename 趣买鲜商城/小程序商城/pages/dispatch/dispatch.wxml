@@ -1,0 +1,22 @@
+<!--pages/dispatch/dispatch.wxml-->
+<view class='body'>
+  <form bindsubmit="formSubmit">
+    <view class='form'>
+      <view class="section">
+        <view class="section__title">收货人</view>
+        <input name="name" value='{{name}}' placeholder="请输入收货人姓名" />
+      </view>
+      <view class="section">
+        <view class="section__title">手机号码</view>
+        <input name="phone" value='{{tel}}' placeholder="请输入手机号码" />
+      </view>
+      <view class="section">
+        <view class="section__title">收货地址</view>
+        <input name="address" value='{{address}}' placeholder="请输入收货地址" />
+      </view>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">提交</button>
+    </view>
+  </form>
+</view>

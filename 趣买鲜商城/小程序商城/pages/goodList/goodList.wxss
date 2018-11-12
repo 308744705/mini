@@ -1,0 +1,66 @@
+/* pages/goodList/goodList.wxss */
+.card{
+  width: 94%;
+  background: #fff;
+  box-shadow: 0 10rpx 40rpx -5rpx rgba(0, 0, 0, .1);
+  color: #3a3a3a !important;
+  margin: 20rpx auto;
+}
+.classify{
+  position: relative;
+  top:20rpx;
+  left: 20rpx;
+  height: 180rpx;
+}
+.classify>text{
+  position: absolute;
+}
+.bold{
+  font-size: 45rpx;
+  font-weight: 600;
+}
+.classify .line{
+  width: 60rpx;
+  height: 1rpx;
+  background: #000;
+  transform: rotate(-50deg);
+  position: absolute;
+  top: 45rpx;
+  left: 40rpx;
+}
+.good_list{
+  padding-bottom: 30rpx;
+}
+.good_img{
+  width: 120rpx;
+  height: 120rpx;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 20rpx;
+}
+.good_info>text{
+  display: block;
+}
+.classify_text{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 50rpx;
+  left: 70rpx;
+}
+.classify_text>text{
+  height: 45rpx;
+}
+.goods{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1rpx solid #eee;
+  padding: 20rpx 30rpx;
+}
+.import_text{
+  font-size: 28rpx;
+  font-weight: 600;
+}

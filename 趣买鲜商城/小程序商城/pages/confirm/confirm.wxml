@@ -1,0 +1,87 @@
+<!--pages/confirm/confirm.wxml-->
+<view class='body'>
+  <view class='list_box'>
+    <view class='pay_way'>
+      <!-- 取货方式 -->
+      <view class='way_nav'>
+        <text wx:for='{{take_way}}' class='{{index==takenav_idx?"active":""}}' bindtap='takeWayClick' data-idx='{{index}}'>{{item}}</text>
+      </view>
+      <view class='card_list'>
+        <!-- 门店信息 -->
+        <view class='store_info' wx:if="{{selfTake}}">
+          <text>银基王朝三期店</text>
+          <text>郑州市金水区福元路157号银基王朝3期万和园</text>
+          <text class="gray">门店营业时间：08：00-22：30</text>
+        </view>
+        <!-- 收货地址 -->
+        <view class='address' wx:else>
+          <view class='flex_bet'>
+            <text>收货地址</text>
+            <navigator url='../dispatch/dispatch' class='flex_end gray'><text>{{address}}</text><view class='arr_right'><image src='../../images/right_arr.svg'></image></view></navigator>
+          </view>
+          <view class='flex_bet'>
+            <text>送达时间</text>
+            <view class='flex_end'>
+              <!-- <picker>2018-10-25 11:00-12:00</picker> -->
+              <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                <view class="picker">
+                  {{multiArray[0][multiIndex[0]]}}　{{multiArray[1][multiIndex[1]]}}
+                </view>
+              </picker>
+              <view class='arr_right'><image src='../../images/right_arr.svg'></image></view>
+            </view>
+          </view>
+        </view>
+        <view>
+          <navigator url='../goodList/goodList' class='flex_bet'>
+          	<view class='goods_img'>
+	            <view class='good_list' wx:for='{{goods_cover}}'>
+	              <view class='good_img' style='background-image:url({{item}});'></view>
+	            </view>
+	        </view>
+            <view class='flex_end' style='width:200rpx;'><text>共{{total_num}}件</text><view class='arr_right'><image src='../../images/right_arr.svg'></image></view></view>
+          </navigator>
+        </view>
+        <view class='order_info'>
+          <view class="flex_bet">
+            <text>商品金额</text>
+            <text>¥{{orderInfo.prince_total}}</text>
+          </view>
+          <!-- <view class='flex_bet'>
+            <text>会员优惠</text>
+            <text>-¥0.00</text>
+          </view>
+          <view class='flex_bet'>
+            <text>优惠券</text>
+            <view class='flex_end' bindtap='checkCompoun'>0张可用<view class='arr_right'><image src='../../images/right_arr.svg'></image></view></view>
+          </view> -->
+          <view class='flex_bet' wx:if="{{selfTake}}"> 
+            <text>服务费</text>
+            <text>¥0.00</text>
+          </view>
+          <view class='flex_bet' wx:else>
+            <text>配送费</text>
+            <text>¥0.00</text>
+          </view>
+          <view class='total'>应付:<text class='import_text'>¥{{orderInfo.prince_total}}</text></view>
+        </view>
+      </view>
+    </view>
+    <view class='pay'>
+      <view class='pay_title'>支付方式</view>
+      <view class='flex_bet'>
+        <view class='flex_bet wx_pay'>
+          <view class='pay_icon'><image src='../../images/weixin.svg'></image></view>
+          <view class='pay_text'>
+            <view>微信支付</view>
+            <view class="gray">立即支付</view>
+          </view>
+        </view>
+        <radio  checked="checked"/>
+      </view>
+    </view>
+  </view>
+  <view class='pay_btn' bindtap='bindPay'>
+    <text>立即支付 ¥{{orderInfo.prince_total}}</text>
+  </view>
+</view>

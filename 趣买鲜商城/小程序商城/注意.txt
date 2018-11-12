@@ -1,0 +1,32 @@
+小程序本地储存字段
+openid accessToken address userInfo orderInfo 
+
+swiper高度问题：
+index和order均用了小程序中自带的swiper，有固定的高度，想要全屏滑动需要操作dom节点，获取内容的高度！！
+
+confirm页面数据均为addOrder接口后台返回数据，储存在本地缓存中！！
+
+订单状态：
+0:已确认收货,1:未支付, 2：待发货,3：待收货(配送到家) , 4: 待取货(门店自提),5,交易完成,等待评价
+修改订单状态：
+0:已确认收货,1:未支付, 2：待发货,3：待收货 , 4: 待取货,5：交易完成,等待评价,6：已经评价,7：已经删除
+
+文件名对应页
+"pages/index/index"  (首页 商品展示) 
+"pages/detail/detail"  (商品详情页) 
+"pages/address/address"  (选择地址页)
+"pages/search/search"  (搜索页)
+"pages/cart/cart"  (购物车)
+"pages/mine/mine"  (我的)
+"pages/order/order"  (订单列表页)
+"pages/coupon/coupon"  (优惠券页)
+"pages/confirm/confirm"  (确认订单页)
+"pages/Odetails/Odetails"  (订单详情页)
+"pages/dispatch/dispatch"  (收货信息表单)
+"pages/goodList/goodList"  (确认订单中的已购商品列表页)
+
+wxParse 富文本转换文件
+"utils/checkToken.js" (检查token)
+"utils/getRight.js" (检查是否授权)
+"utils/formatTime.js"  (时间戳转换)
+"utils/qqmap-wx.js"  (腾讯地图wx小程序jssdk)

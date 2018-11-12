@@ -1,0 +1,27 @@
+<!--pages/address/address.wxml-->
+<view>
+  <!-- 搜索 -->
+  <form class='form' bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section" animation="{{intAnimate}}">
+      <view class="icon"><image src='../../images/search.png'></image></view>
+      <input name="input" bindfocus='inputFocus' bindblur='cancel' placeholder="搜索" />
+    </view>
+    <text class='red cancel' animation="{{btnAnimate}}" bindtap='cancel'>取消</text>
+  </form>
+  <!-- 地址列表 -->
+  <view>
+    <view class='address_list flex_bet' wx:for='{{addressList}}'>
+      <view>
+        <view class='col_center'>
+          <view class='sm_icon'>
+            <image src='../../images/shop.svg'></image>
+          </view>
+          <text style='font-size:34rpx;'>北京邮电大学店</text>
+        </view>
+        <text class='gray'>北邮校内鸿通楼北侧许鲜店(近西门)</text>
+      </view>
+      <view class='icon' style='width:10%;'><image src='../../images/chose.svg'></image></view>
+    </view>
+  </view>
+</view>
+

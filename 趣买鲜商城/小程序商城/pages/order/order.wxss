@@ -1,0 +1,84 @@
+/* pages/order/order.wxss */
+.order_nav{
+  background: #fff;
+}
+.order_nav text{
+  width: 25%;
+  font-size: 30rpx;
+  padding: 5rpx 0;
+  text-align: center;
+  color: #8a8a8a;
+}
+.order_nav .active{
+  color: #DEBA7C !important;
+  border-bottom: 2px solid #DEBA7C;
+}
+swiper{
+  width: 100%;
+  height: 800rpx;
+}
+.orders_box{
+	padding-bottom:20rpx;
+}
+.order_box{
+  width: 94%;
+  margin: 20rpx auto;
+  box-shadow: 0 6rpx 40rpx -5rpx rgba(0,0,0,.1);
+  font-size: 34rpx;
+  color: #434343;
+  background: #fff;
+}
+.order_box>view{
+  padding: 20rpx;
+}
+.good_cover{
+  width: 180rpx;
+  height: 180rpx;
+  border: 1rpx solid #eee;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 25rpx;
+}
+.order_good{
+  border: 1rpx solid #eee;
+  border-width: 1rpx 0;
+  display: flex;
+  justify-content: flex-start;
+  padding:30rpx 20rpx !important;
+}
+.good_info{
+  width: 70%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.order_info text:nth-child(2){
+  color: #8a8a8a;
+}
+.order_good .title{
+  font-size: 34rpx;
+}
+.order_price text{
+  font-size: 34rpx;
+  font-weight: 700;
+}
+.order_btn{
+  width: 160rpx;
+  padding: 5rpx 0; 
+  border-radius: 50rpx;
+  text-align: center;
+  border: 1rpx solid #E4393C;
+  color: #E4393C;
+}
+.goPay{
+  background: #000;
+  color: #fff;
+  border-color:#000;
+}
+.del_order{
+  border-color: #aaa;
+  color: #aaa;
+  background: #fff;
+}

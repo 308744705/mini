@@ -1,0 +1,65 @@
+<!--pages/cart/cart.wxml-->
+<view>
+  <form bindsubmit="formSubmit" bindreset="formReset" wx:if='{{hasGoods}}'>
+  <!-- 购物车顶部 -->
+    <view class='flex_bet cart_head'>
+      <text style='margin-left:20rpx;'>共{{total_num}}件宝贝</text>
+      <view class='clearAll' bindtap='clearAll'>
+        <view class='icon'>
+          <image src='../../images/clear.svg'></image>
+        </view>
+        <text>清空</text>
+      </view>
+    </view>
+    <!-- 商品列表 -->
+    <view class="section whiteBg">
+      <view class='goods_list flex_bet' wx:for='{{cart_list}}' wx:for-item='i' wx:for-index='idx'>
+        <label class='check_box'>
+          <view class='cir_check {{checkArr[idx]?"active":""}}' bindtap='singleClick' data-idx='{{idx}}'>
+            <image wx:if='{{checkArr[idx]}}' src='../../images/check.png'></image>
+          </view>
+          <checkbox checked='{{checkArr[idx]}}'></checkbox>
+        </label>
+        <view class='good_img' style='background-image:url({{i.goods_thumbimgurl}});'></view>
+        <view style='width:60%;'>
+          <text class='title'>{{i.goods_name}}</text>
+          <text>{{i.goods_batter_name}}</text>
+          <view>
+            <text>￥<text class='good_price'>{{i.price}}</text></text>
+            <view class='num_btn_box flex_bet'>
+              <view class='num_btn' bindtap='subClick' data-id='{{i.goods_id}}' data-num='{{i.num}}' data-idx='{{idx}}'>
+                <image src='../../images/sub.svg'></image>
+              </view>
+              <text>{{i.num}}</text>
+              <view class='num_btn' wx:if='{{i.add_state}}' bindtap='addClick' data-id='{{i.goods_id}}' data-num='{{i.num}}' data-idx='{{idx}}'>
+                <image src='../../images/add.svg'></image>
+                <text class='red' animation='{{animateData}}' style='opacity:0;'> +1 </text>
+              </view>
+              <view class='num_btn' wx:else bindtap='addOver'>
+                <image src='../../images/unadd.svg'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 购物车底部 -->
+    <view class='cart_pay flex_bet'>
+      <label class='check_box' style='margin-left:15rpx;'><view class='cir_check {{checked?"active":""}}' bindtap='allCheck'><image src='../../images/check.png' wx:if='{{checked}}'></image></view><checkbox checked='{{checked}}' value='check_all'></checkbox>全选</label>
+      <view class="btn-area col_center">
+        <label>合计:￥<text class='total_pay'>{{total}}</text></label>
+        <button class='sub_btn' formType="submit">去结算(<text>{{total_num}}</text>)</button>
+      </view>
+    </view>
+  </form>
+  <!-- 购物车为空 -->
+  <view class='empty_cart' wx:else>
+	  <view class='empty_icon'>
+	    <image src='../../images/cart.svg'></image>
+	  </view>
+	  <text>购物车竟然是空的</text>
+	  <view class='goShop' bindtap='goShop'>
+	    去逛逛
+	  </view>
+	</view>
+</view>

@@ -1,0 +1,92 @@
+<!--pages/detail/detail.wxml---详情页-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='body'>
+  <!-- 商品图 -->
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{good_info.bannerArr}}" wx:for-item='item'>
+      <swiper-item>
+        <view class='good_img' style='background-image:url({{item}});'></view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 底部 -->
+  <view class='fn_handle flex_bet'>
+    <view class='cart_btn' bindtap='toCart'>
+      <image src='../../images/cart_btn.svg'></image>
+      <view class='cart_total'>{{cart_total}}</view>
+    </view>
+    <view class='fn_btn'>
+      <!-- <text>加入购物车</text> -->
+      <view bindtap='toPay' wx:if="{{good_info.stock!=0}}"><text>立即购买</text></view>
+      <view bindtap='noStock' wx:else><text class='empty'>已售罄</text></view>
+    </view>
+  </view>
+  <view>
+    <view>
+      <view class='good_info flex_bet'>
+        <view class='title over_two'>{{good_info.goods_name}}</view>
+        <button open-type='share' class="share flex_bet">
+          <view class='icon'><image src='../../images/share.svg'></image></view>
+          <text class='gray'>分享</text>
+        </button>
+      </view>
+      <view class='gray'>{{good_info.goods_batter_name}}</view>
+      <view class='flex_bet'>
+        <view>
+          <view class='good_price'>
+            <view class='red'>¥<text>{{good_info.price}}</text><view>团购价</view></view>
+          </view>
+          <text class='gray old_price'>¥{{good_info.true_price}}</text>
+        </view>
+        <view class='num_btn_box flex_bet'>
+          <view class='num_btn' bindtap='subClick' data-num='{{}}' data-idx='{{idx}}'>
+            <image src='../../images/sub.svg'></image>
+          </view>
+          <text>{{good_num}}</text>
+          <view class='num_btn' wx:if='{{addLimit}}' bindtap='addClick' data-num='{{}}' data-idx='{{idx}}'>
+            <image src='../../images/add.svg'></image>
+          </view>
+          <view class='num_btn' wx:else>
+            <image src='../../images/unadd.svg'></image>
+          </view>
+        </view>
+      </view>
+      <view class='gray flex_bet extra_info'><text>运费 免运费</text><text>销量{{good_info.sale_stock}}/库存{{good_info.stock}}</text></view>
+    </view>
+  </view>
+  <!-- 评论区 -->
+  <!-- <view>
+    <view class='flex_bet'><text>宝贝评价(48)</text><text class='red'>查看全部 ></text></view>
+    <view>
+      <view class='flex_bet gray' style='justify-content:flex-start;'><view class='eval_head' style='background-image:url(https://img.alicdn.com/imgextra/i1/TB1jHqaQVXXXXcWXpXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg);'></view> 哈哈哈</view>
+      <text class='over_two'>水果新鲜，价格实惠，物美价廉，非常满意，包装非常仔细，发货速度非常快</text>
+    </view>
+  </view> -->
+  <!-- 详情 -->
+  <view>
+    <view class='detail_nav'>
+      <text class='{{idx==nav_active?"active":""}}' wx:for='{{detail_nav}}' bindtap='detailNavClick' data-idx='{{idx}}' wx:for-index='idx'>{{item}}</text>
+    </view>
+    <view>
+      <!-- 宝贝详情 -->
+      <view class='good_detail' wx:if='{{!nav_active}}'>
+      	<template is="wxParse" data="{{wxParseData:describe.nodes}}"/>
+      </view>
+      <!-- 成交记录 -->
+      <view wx:else>
+        <view wx:for='{{volume}}' hidden='{{vol_length==0}}'>
+          <view class='flex_bet volume_list'>
+            <view class='volume_user'>
+              <view class='eval_head' style='background-image:url({{item.headimgurl}});'></view>
+              <text class='over_two'>{{item.nickname}}</text>
+            </view>
+            <text>{{item.update_time}}</text>
+            <text style='width:100rpx;text-align:middle;'>{{item.num}}份</text>
+          </view>
+        </view>
+        <view class='line' hidden='{{vol_length!=0}}'><text>暂无成交记录</text></view>
+      </view>
+    </view>
+  </view>
+</view>
