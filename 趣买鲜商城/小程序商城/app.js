@@ -12,6 +12,7 @@ App({
     getRight:false
   },
   loadInfo(){ //定位信息
+  	
     let qqmapsdk = new QQMapWX({
       key: '7R7BZ-LQ2KU-WAQVK-4J4BT-JK6IF-YRFLN' // 必填 腾讯地图开发者密钥
     });
